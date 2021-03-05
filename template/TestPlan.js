@@ -1,19 +1,17 @@
 
-import { File } from './protocols/NATS/samplers/node_modules/@asyncapi/generator-react-sdk';
-import { getSamplers } from '../components/sampler';
-import path from 'path';
-import { pascalCase } from '../components/protocols/NATS/utils';
+import { File } from '@asyncapi/generator-react-sdk';
+import { getSamplers } from '../components/sampler/index';
 
-export default function testFile({ asyncapi, generator }) {
-  const outputDir = generator.outputDir;
-  const scriptFileName = path.join(outputDir, pascalCase(channelName), '.groovy');
-  const samplers = getSamplers(asyncapi, scriptFileName);
-  return <File name={'AsyncAPI test plan.jmx'}>
+export default function testFile({ asyncapi }) {
+  let samplers = getSamplers(asyncapi);
+  samplers = samplers.join('');
+  const testplanName = asyncapi.info().title() ? asyncapi.info().title() : 'AsyncAPI';
+  return <File name={`${testplanName} test plan.jmx`}>
     {`
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.4.1">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="AsyncAPI test plan" enabled="true">
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="${testplanName} test plan" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
@@ -24,7 +22,7 @@ export default function testFile({ asyncapi, generator }) {
       <stringProp name="TestPlan.user_define_classpath"></stringProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread group" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -76,8 +74,7 @@ export default function testFile({ asyncapi, generator }) {
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        ${samplers.join('\n')}
-        <hashTree/>
+        ${samplers}
       </hashTree>
     </hashTree>
   </hashTree>

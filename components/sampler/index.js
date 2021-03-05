@@ -1,15 +1,15 @@
-import { isNATSProtocol } from '../protocols/NATS/utils';
-import { getNATSSamplers } from '../protocols/NATS/testplan/samplers';
+import { isNATSProtocol } from '../utils/nats';
+import { getNATSSamplers } from '../protocols/NATS/testplan/samplers/index';
 
 /**
  * Based on protocol figure which samplers we must use.
  */
-export function getSamplers(asyncapi, scriptFileName) {
+export function getSamplers(asyncapi) {
   let samplers = [];
   const serverEntries = Object.keys(asyncapi.servers()).length ? Object.entries(asyncapi.servers()) : [];
-  samplers = serverEntries.map(([, server]) => {
+  serverEntries.forEach(([, server]) => {
     if (isNATSProtocol(server)) {
-      samplers = [...samplers, getNATSSamplers(asyncapi, scriptFileName)];
+      samplers = [...samplers, getNATSSamplers(asyncapi)];
     }
   });
   return samplers;

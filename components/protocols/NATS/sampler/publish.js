@@ -1,8 +1,9 @@
-import { realizeChannelName } from '../utils/index';
+import { realizeTopic } from '../../../utils/nats';
+import {sample} from 'openapi-sampler';
 
 export function Publish(channelName, messageToSend, channelParameters) {
-  const realizedChannel = realizeChannelName(channelParameters, channelName);
-  const messageToSendExample = generateExample(messageToSend.payload().json());
+  const realizedChannel = realizeTopic(channelParameters, channelName);
+  const messageToSendExample = JSON.stringify(sample(messageToSend.payload().json())).replace(/"/g, '\\"');
   
   return `
 import io.nats.client.Nats
