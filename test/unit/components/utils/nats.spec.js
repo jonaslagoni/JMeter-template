@@ -1,7 +1,6 @@
-
 /* eslint-disable prefer-arrow-callback */
 import { expect } from 'chai';
-import {realizeTopic} from '../../../../components/utils/nats';
+import {realizeTopic, isNATSProtocol} from '../../../../components/utils/nats';
 describe('NATS component utils', function() {
   describe('realizeTopic()', function() {
     it('should support string parameter', function() {
@@ -26,6 +25,22 @@ describe('NATS component utils', function() {
       };
       const realizedChannel = realizeTopic(parameters, channelName);
       expect(realizedChannel).to.equal('"some.path.with.0"'); 
+    });
+  });
+  describe('isNATSProtocol()', function() {
+    it('should return true when server has protocol nats', function() {
+      const serverWithNatsProtocol = {};
+      serverWithNatsProtocol.protocol = () => {
+        return 'nats';
+      };
+      expect(isNATSProtocol(serverWithNatsProtocol)).to.equal(true); 
+    });
+    it('should return false when server does not have protocol nats', function() {
+      const serverWithNatsProtocol = {};
+      serverWithNatsProtocol.protocol = () => {
+        return 'ws';
+      };
+      expect(isNATSProtocol(serverWithNatsProtocol)).to.equal(false); 
     });
   });
 });
