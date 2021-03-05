@@ -13,7 +13,7 @@ export function realizeTopic(parameters, channelName) {
 }
 
 /**
- * Is the channel a publish and subscribe. This is the default type if none is defined.
+ * Figure out if channel is a pub/sub channel
  */
 export function isPubsub(channel) {
   if (!channel.hasBinding('nats') ||
@@ -25,7 +25,7 @@ export function isPubsub(channel) {
 }
   
 /**
- * Is the channel a request and reply.
+ * Figure out if channel is a request/reply channel
  */
 export function isRequestReply(channel) {
   if (channel.hasBinding('nats') &&
@@ -37,7 +37,7 @@ export function isRequestReply(channel) {
 }
     
 /**
- * Is the request reply a requester
+ * Figure out if channel is a request channel
  */
 export function isRequester(channel) {
   if (isRequestReply(channel) &&
@@ -49,7 +49,7 @@ export function isRequester(channel) {
 }
     
 /**
- * Is the request reply a replier
+ * Figure out if channel is a reply channel
  */
 export function isReplier(channel) {
   if (isRequestReply(channel) &&
@@ -61,8 +61,9 @@ export function isReplier(channel) {
 }
 
 /**
+ * return true if server has protocol 'nats'
  * 
- * @param {*} server 
+ * @param {*} server to check
  */
 export function isNATSProtocol(server) {
   return server.protocol() === 'nats';
