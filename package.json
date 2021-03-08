@@ -27,6 +27,7 @@
 	},
 	"dependencies": {
 		"@asyncapi/generator-react-sdk": "^0.2.0",
+		"@asyncapi/parser": "^1.4.0",
 		"lodash": "^4.17.20",
 		"openapi-sampler": "^1.0.0-beta.18"
 	},
@@ -35,7 +36,6 @@
 	},
 	"devDependencies": {
 		"@asyncapi/generator": "^1.5.0",
-		"@asyncapi/parser": "^1.4.0",
 		"@babel/plugin-transform-runtime": "^7.13.9",
 		"@babel/register": "^7.13.8",
 		"@semantic-release/commit-analyzer": "^8.0.1",
