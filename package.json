@@ -1,6 +1,6 @@
 {
 	"name": "@lagoni/jmeter-template",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Generate JMeter performance test plans for your application using the AsyncAPI generator.",
 	"keywords": [
 		"asyncapi",
