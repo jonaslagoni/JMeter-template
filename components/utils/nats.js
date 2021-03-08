@@ -1,19 +1,26 @@
 import {sample} from 'openapi-sampler';
+// eslint-disable-next-line no-unused-vars
+import {Channel, ChannelParameter, Server} from '@asyncapi/parser';
 
 /**
  * Convert RFC 6570 URI with parameters to NATS topic. 
+ *
+ * @param {{[key: string]: ChannelParameter}} channelParameters 
+ * @param {string} channelName 
  */
 export function realizeTopic(parameters, channelName) {
   let returnString = `"${ channelName }"`;
   returnString = returnString.replace(/\//g, '.');
   for (const paramName in parameters) {
-    returnString = returnString.replace(`{${paramName}}`, sample(parameters[`${paramName}`].json()));
+    returnString = returnString.replace(`{${paramName}}`, sample(parameters[`${paramName}`].schema().json()));
   }
   return returnString;
 }
 
 /**
  * Figure out if channel is a pub/sub channel
+ * 
+ * @param {Channel} channel 
  */
 export function isPubsub(channel) {
   if (!channel.hasBinding('nats') ||
@@ -26,6 +33,8 @@ export function isPubsub(channel) {
   
 /**
  * Figure out if channel is a request/reply channel
+ * 
+ * @param {Channel} channel 
  */
 export function isRequestReply(channel) {
   if (channel.hasBinding('nats') &&
@@ -38,6 +47,8 @@ export function isRequestReply(channel) {
     
 /**
  * Figure out if channel is a request channel
+ * 
+ * @param {Channel} channel 
  */
 export function isRequester(channel) {
   if (isRequestReply(channel) &&
@@ -50,6 +61,8 @@ export function isRequester(channel) {
     
 /**
  * Figure out if channel is a reply channel
+ * 
+ * @param {Channel} channel 
  */
 export function isReplier(channel) {
   if (isRequestReply(channel) &&
@@ -63,7 +76,7 @@ export function isReplier(channel) {
 /**
  * return true if server has protocol 'nats'
  * 
- * @param {*} server to check
+ * @param {Server} server to check
  */
 export function isNATSProtocol(server) {
   return server.protocol() === 'nats';

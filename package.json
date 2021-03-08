@@ -27,6 +27,7 @@
 	},
 	"dependencies": {
 		"@asyncapi/generator-react-sdk": "^0.2.0",
+		"@asyncapi/parser": "^1.4.0",
 		"lodash": "^4.17.20",
 		"openapi-sampler": "^1.0.0-beta.18"
 	},
@@ -34,9 +35,15 @@
 		"access": "public"
 	},
 	"devDependencies": {
+		"@asyncapi/generator": "^1.5.0",
 		"@babel/plugin-transform-runtime": "^7.13.9",
 		"@babel/register": "^7.13.8",
+		"@semantic-release/commit-analyzer": "^8.0.1",
+		"@semantic-release/github": "^7.0.4",
+		"@semantic-release/npm": "^7.0.3",
+		"@semantic-release/release-notes-generator": "^9.0.1",
 		"chai": "^4.3.3",
+		"conventional-changelog-conventionalcommits": "^4.2.3",
 		"eslint": "^7.0.0",
 		"eslint-plugin-mocha": "^7.0.1",
 		"eslint-plugin-react": "^7.22.0",
@@ -44,11 +51,6 @@
 		"eslint-plugin-sonarjs": "^0.5.0",
 		"mocha": "^6.1.4",
 		"nyc": "^15.1.0",
-		"@semantic-release/commit-analyzer": "^8.0.1",
-		"@semantic-release/github": "^7.0.4",
-		"@semantic-release/npm": "^7.0.3",
-		"@semantic-release/release-notes-generator": "^9.0.1",
-		"conventional-changelog-conventionalcommits": "^4.2.3",
 		"semantic-release": "^17.0.4"
 	},
 	"generator": {

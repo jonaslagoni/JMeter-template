@@ -1,0 +1,108 @@
+{
+	"asyncapi": "2.0.0",
+	"info": {
+		"title": "Streetlight",
+		"version": "1.0.0"
+	},
+	"servers": {
+		"nats": {
+			"url": "127.0.0.1",
+			"protocol": "nats"
+		}
+	},
+	"defaultContentType": "json",
+	"channels": {
+		"streetlight/{streetlight_id}/command/switchOff": {
+			"description": "Channel to switch on streetlight",
+			"parameters": {
+				"streetlight_id": {
+					"description": "The ID of the streetlight",
+					"schema": {
+						"type": "string"
+					}
+				}
+			},
+			"subscribe": {
+				"message": {
+					"$ref": "#/components/messages/switchOff"
+				}
+			},
+			"bindings": {
+				"nats": {
+					"is": "pubsub",
+					"bindingVersion": "0.1.0"
+				}
+			}
+		},
+		"streetlight/{streetlight_id}/command/switchOn": {
+			"description": "Channel to switch on streetlight",
+			"parameters": {
+				"streetlight_id": {
+					"description": "The ID of the streetlight",
+					"schema": {
+						"type": "string"
+					}
+				}
+			},
+			"publish": {
+				"description": "The reply returned on request",
+				"message": {
+					"$ref": "#/components/messages/generalReply"
+				}
+			},
+			"subscribe": {
+				"description": "Request to turn on the streetlight",
+				"message": {
+					"$ref": "#/components/messages/switchOnCommand"
+                }
+			}, 
+			"bindings": {
+				"nats": {
+					"is": "requestReply",
+					"requestReply": {
+						"is": "replier"
+					},
+					"bindingVersion": "0.1.0"
+				}
+			}
+		}
+	},
+	"components": {
+		"messages": {
+			"switchOff": {
+                "name": "switchOff",
+                "payload": {
+                    "type": "null"
+                }
+            },
+			"switchOnCommand": {
+                "name": "switchOnCommand",
+                "payload": {
+                    "type": "object",
+                    "$id": "switchOnCommandPayload",
+                    "required": ["lumen"],
+                    "properties": {
+                        "lumen": {
+                            "type": "integer",
+                            "description": "How bright should the light be."
+                        }
+                    }
+                }
+            },
+			"generalReply": {
+				"payload": {
+					"type": "object",
+					"$id": "GeneralReply",
+					"properties": {
+						"status_code": {
+							"type": "integer"
+						},
+						"status_message": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		}
+	}
+}

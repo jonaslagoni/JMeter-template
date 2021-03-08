@@ -1,19 +1,22 @@
 import { getSamplerCode } from '../../sampler/index';
 import { isRequestReply, isReplier, isPubsub } from '../../../../utils/nats';
 import { pascalCase } from '../../../../utils/index';
+// eslint-disable-next-line no-unused-vars
+import {AsyncAPIDocument, Server} from '@asyncapi/parser';
 
 /**
  * This includes samplers into the testplan file.
  * 
- * @param {*} asyncapi 
+ * @param {AsyncAPIDocument} asyncapi 
+ * @param {Server} server to generate sampler for 
  */
-export function getNATSSamplers(asyncapi) {
+export function getNATSSamplers(asyncapi, server) {
   const natsSamplers = [];
   const channelEntries = Object.keys(asyncapi.channels()).length ? Object.entries(asyncapi.channels()) : [];
   channelEntries.forEach(([channelName, channel]) => {
     let samplerName = '';
 
-    const testCode = getSamplerCode(channel, channelName);
+    const testCode = getSamplerCode(channel, channelName, server);
     if (testCode === undefined) return;
 
     if (isRequestReply(channel) && isReplier(channel)) {
