@@ -1,6 +1,13 @@
 import { realizeTopic } from '../../../utils/nats';
 import {sample} from 'openapi-sampler';
 
+/**
+ * Get sampler for publishing messages
+ * 
+ * @param {*} channelName to publish to
+ * @param {*} messageToSend 
+ * @param {*} channelParameters
+ */
 export function Publish(channelName, messageToSend, channelParameters) {
   const realizedChannel = realizeTopic(channelParameters, channelName);
   const messageToSendExample = JSON.stringify(sample(messageToSend.payload().json())).replace(/"/g, '\\"');

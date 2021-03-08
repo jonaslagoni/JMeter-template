@@ -4,7 +4,7 @@ import { Request } from './request';
 import { isRequestReply, isReplier, isPubsub } from '../../../utils/nats';
 
 /**
- * 
+ * Based on channel type get sampler code
  * @param {*} channel 
  * @param {*} channelName 
  */

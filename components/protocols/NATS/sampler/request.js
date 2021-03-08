@@ -1,6 +1,13 @@
 import { realizeTopic } from '../../../utils/nats';
 import {sample} from 'openapi-sampler';
 
+/**
+ * Get sampler for requesting
+ * 
+ * @param {*} channelName to publish to
+ * @param {*} messageToSend 
+ * @param {*} channelParameters 
+ */
 export function Request(channelName, messageToSend, channelParameters) {
   const realizedChannel = realizeTopic(channelParameters, channelName);
   const messageToSendExample = JSON.stringify(sample(messageToSend.payload().json())).replace(/"/g, '\\"');
@@ -18,7 +25,6 @@ def nc = Nats.connect(options)
 def incoming = nc.request(${realizedChannel}, byteArray)
 def msg = incoming.get(5, TimeUnit.SECONDS)
 def response = msg.data.toString()
-println(response)
 nc.close()
       `;
 }

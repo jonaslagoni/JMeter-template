@@ -2,6 +2,11 @@ import { getSamplerCode } from '../../sampler/index';
 import { isRequestReply, isReplier, isPubsub } from '../../../../utils/nats';
 import { pascalCase } from '../../../../utils/index';
 
+/**
+ * This includes samplers into the testplan file.
+ * 
+ * @param {*} asyncapi 
+ */
 export function getNATSSamplers(asyncapi) {
   const natsSamplers = [];
   const channelEntries = Object.keys(asyncapi.channels()).length ? Object.entries(asyncapi.channels()) : [];
@@ -26,8 +31,7 @@ ${testCode}
     </stringProp>
     <stringProp name="scriptLanguage">groovy</stringProp>
 </JSR223Sampler>
-<hashTree/>
-`);
+<hashTree/>`);
   });
   return natsSamplers;
 }

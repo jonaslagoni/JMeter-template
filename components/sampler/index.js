@@ -2,8 +2,10 @@ import { isNATSProtocol } from '../utils/nats';
 import { getNATSSamplers } from '../protocols/NATS/testplan/samplers/index';
 
 /**
- * Based on protocol figure which samplers we must use.
- */
+  * Based on protocol figure which samplers we must use.
+  * 
+  * @param {*} asyncapi 
+  */
 export function getSamplers(asyncapi) {
   let samplers = [];
   const serverEntries = Object.keys(asyncapi.servers()).length ? Object.entries(asyncapi.servers()) : [];
