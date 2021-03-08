@@ -21,7 +21,9 @@
 	"scripts": {
 		"lint": "./node_modules/.bin/eslint --max-warnings 0 --config .eslintrc .",
 		"lint:fix": "./node_modules/.bin/eslint --max-warnings 0 --config .eslintrc . --fix",
-		"test": "nyc mocha --require @babel/register --recursive"
+		"test": "nyc mocha --require @babel/register --recursive",
+		"get-version": "echo $npm_package_version",
+		"release": "semantic-release"
 	},
 	"dependencies": {
 		"@asyncapi/generator-react-sdk": "^0.2.0",
@@ -43,7 +45,13 @@
 		"eslint-plugin-security": "^1.4.0",
 		"eslint-plugin-sonarjs": "^0.5.0",
 		"mocha": "^6.1.4",
-		"nyc": "^15.1.0"
+		"nyc": "^15.1.0",
+		"@semantic-release/commit-analyzer": "^8.0.1",
+		"@semantic-release/github": "^7.0.4",
+		"@semantic-release/npm": "^7.0.3",
+		"@semantic-release/release-notes-generator": "^9.0.1",
+		"conventional-changelog-conventionalcommits": "^4.2.3",
+		"semantic-release": "^17.0.4"
 	},
 	"generator": {
 		"renderer": "react",
