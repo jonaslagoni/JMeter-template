@@ -1,5 +1,5 @@
 {
-	"name": "@asyncapi/jmeter-template",
+	"name": "@lagoni/jmeter-template",
 	"version": "0.0.0",
 	"description": "Generate JMeter performance test plans for your application using the AsyncAPI generator.",
 	"keywords": [
@@ -10,29 +10,25 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/asyncapi/jmeter-template.git"
+		"url": "git+https://github.com/jonaslagoni/jmeter-template.git"
 	},
 	"bugs": {
-		"url": "https://github.com/asyncapi/jmeter-template/issues"
+		"url": "https://github.com/jonaslagoni/jmeter-template/issues"
 	},
-	"homepage": "https://github.com/asyncapi/jmeter-template#readme",
+	"homepage": "https://github.com/jonaslagoni/jmeter-template#readme",
 	"author": "Jonas Lagoni (jonas-lt@live.dk)",
 	"license": "Apache-2.0",
 	"scripts": {
-		"release": "semantic-release",
 		"lint": "./node_modules/.bin/eslint --max-warnings 0 --config .eslintrc .",
 		"lint:fix": "./node_modules/.bin/eslint --max-warnings 0 --config .eslintrc . --fix",
-		"test": "nyc mocha --require @babel/register --recursive",
-		"generate:assets": "npm run generate:examples",
-		"bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION"
+		"test": "nyc mocha --require @babel/register --recursive"
 	},
 	"dependencies": {
 		"@asyncapi/generator-react-sdk": "^0.2.0",
-		"cross-env": "^7.0.2",
-		"filenamify": "^4.1.0",
-		"is-url": "1.2.4",
 		"lodash": "^4.17.20",
-		"openapi-sampler": "^1.0.0-beta.18"
+		"openapi-sampler": "^1.0.0-beta.18",
+		"get-version": "echo $npm_package_version",
+		"release": "semantic-release"
 	},
 	"publishConfig": {
 		"access": "public"
@@ -40,21 +36,21 @@
 	"devDependencies": {
 		"@babel/plugin-transform-runtime": "^7.13.9",
 		"@babel/register": "^7.13.8",
-		"@semantic-release/commit-analyzer": "^8.0.1",
-		"@semantic-release/github": "^7.0.4",
-		"@semantic-release/npm": "^7.0.3",
-		"@semantic-release/release-notes-generator": "^9.0.1",
 		"chai": "^4.3.3",
-		"conventional-changelog-conventionalcommits": "^4.2.3",
 		"eslint": "^7.0.0",
 		"eslint-plugin-mocha": "^7.0.1",
 		"eslint-plugin-react": "^7.22.0",
 		"eslint-plugin-security": "^1.4.0",
 		"eslint-plugin-sonarjs": "^0.5.0",
 		"mocha": "^6.1.4",
-		"nyc": "^15.1.0",
-		"rimraf": "^3.0.2",
-		"semantic-release": "^17.0.4"
+		"nyc": "^15.1.0"
+	},
+	"generator": {
+		"renderer": "react",
+		"supportedProtocols": [
+			"nats"
+		],
+		"generator": ">=1.4.0 <2.0.0"
 	},
 	"release": {
 		"branches": [
@@ -76,12 +72,5 @@
 			"@semantic-release/npm",
 			"@semantic-release/github"
 		]
-	},
-	"generator": {
-		"renderer": "react",
-		"supportedProtocols": [
-			"nats"
-		],
-		"generator": ">=1.4.0 <2.0.0"
 	}
 }

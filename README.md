@@ -9,7 +9,7 @@ This template is for generating a JMeter test plans for your application based o
 
 
 ### Requirements
-* @asyncapi/generator < v2.0.0 > v1.0.0
+* @asyncapi/generator < v2.0.0 > v1.4.0
 * JMeter >= 5.4.1
 
 Install the generator through [npm or run it from docker official installer](https://github.com/asyncapi/generator#install).
