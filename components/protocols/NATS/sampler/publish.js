@@ -1,14 +1,16 @@
 import { realizeTopic } from '../../../utils/nats';
 import { getConnectionUrl } from '../../../utils/index';
 import {sample} from 'openapi-sampler';
+// eslint-disable-next-line no-unused-vars
+import {Server, ChannelParameter, Message} from '@asyncapi/parser';
 
 /**
  * Get sampler for publishing messages
  * 
- * @param {*} channelName to publish to
- * @param {*} messageToSend 
- * @param {*} channelParameters
- * @param {*} server to generate sampler for 
+ * @param {string} channelName to publish to
+ * @param {Message} messageToSend 
+ * @param {{[key: string]: ChannelParameter}} channelParameters 
+ * @param {Server} server to generate sampler for 
  */
 export function Publish(channelName, messageToSend, channelParameters, server) {
   const realizedChannel = realizeTopic(channelParameters, channelName);

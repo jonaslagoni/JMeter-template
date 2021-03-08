@@ -1,7 +1,6 @@
 
 import { File } from '@asyncapi/generator-react-sdk';
 import { getSamplers } from '../components/sampler/index';
-
 /**
  * Generate test plan
  * @param {*} param0 

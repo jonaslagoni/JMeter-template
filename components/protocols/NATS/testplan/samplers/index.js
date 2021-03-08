@@ -1,12 +1,14 @@
 import { getSamplerCode } from '../../sampler/index';
 import { isRequestReply, isReplier, isPubsub } from '../../../../utils/nats';
 import { pascalCase } from '../../../../utils/index';
+// eslint-disable-next-line no-unused-vars
+import {AsyncAPIDocument, Server} from '@asyncapi/parser';
 
 /**
  * This includes samplers into the testplan file.
  * 
- * @param {*} asyncapi 
- * @param {*} server to generate sampler for 
+ * @param {AsyncAPIDocument} asyncapi 
+ * @param {Server} server to generate sampler for 
  */
 export function getNATSSamplers(asyncapi, server) {
   const natsSamplers = [];
