@@ -18,3 +18,4 @@ Install the generator through [npm or run it from docker official installer](htt
 ## Supported protocols
 
 - NATS
+  - Both pubsub and request/reply is supported
