@@ -5,7 +5,7 @@
 
 This template is for generating a JMeter test plans for your application based on the AsyncAPI document to enable easier performance testing of your applications.
 
-It generates a single `.jmx` file for your application, at the moment it only generates very basic test plan. If you encounter any features that are missing feel free to create a feature request or PR.
+It generates a single `.jmx` file for your application, at the moment it only generates very basic test plan.
 
 ### Requirements
 * @asyncapi/generator < v2.0.0 > v1.4.0
@@ -27,3 +27,18 @@ The output is a single JMeter test plan file `.jmx` which can be opened in JMete
 
 - NATS - [See docs for further details and requirements](./docs/protocols/nats.md)
   - Supports publish and request
+
+## Contribution guidelines
+Any contributions are welcome more then welcome, got an idea how to do something differently, new feature, found a bug, etc. let us know!
+
+The repository includes Visual studio code run scripts for you to debug the template on the fly. See `./.vscode/launch.json` and the example AsyncAPI documents to test with are located in `./.vscode/protocols/*.json`. If you add a new protocol please provide an example AsyncAPI document there.
+
+### When you want to introduce changes
+1. Pick or create an issue.
+    * It's always a good idea to leave a message saying that you're going to work on it before you start any actual work.
+1. Fork the repository and work there.
+1. Before opening a Pull Request ensure:
+    * That `npm run lint` does not fail
+    * That `npm run test` does not fail
+1. Open a Pull Request pointing to the master branch.
+1. A maintainer will review your code as soon as possible.
