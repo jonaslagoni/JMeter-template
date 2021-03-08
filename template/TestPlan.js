@@ -2,6 +2,10 @@
 import { File } from '@asyncapi/generator-react-sdk';
 import { getSamplers } from '../components/sampler/index';
 
+/**
+ * Generate test plan
+ * @param {*} param0 
+ */
 export default function testFile({ asyncapi }) {
   let samplers = getSamplers(asyncapi);
   samplers = samplers.join('');

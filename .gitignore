@@ -1,6 +1,8 @@
 node_modules
-dist
 .DS_Store
 __transpiled
 .nyc_output
 coverage
+
+# Using vscode debugging generates output dir
+output

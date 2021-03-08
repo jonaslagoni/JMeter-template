@@ -11,7 +11,7 @@ export function getSamplers(asyncapi) {
   const serverEntries = Object.keys(asyncapi.servers()).length ? Object.entries(asyncapi.servers()) : [];
   serverEntries.forEach(([, server]) => {
     if (isNATSProtocol(server)) {
-      samplers = [...samplers, getNATSSamplers(asyncapi)];
+      samplers = [...samplers, getNATSSamplers(asyncapi, server)];
     }
   });
   return samplers;

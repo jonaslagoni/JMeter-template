@@ -7,7 +7,7 @@ export function realizeTopic(parameters, channelName) {
   let returnString = `"${ channelName }"`;
   returnString = returnString.replace(/\//g, '.');
   for (const paramName in parameters) {
-    returnString = returnString.replace(`{${paramName}}`, sample(parameters[`${paramName}`].json()));
+    returnString = returnString.replace(`{${paramName}}`, sample(parameters[`${paramName}`].schema().json()));
   }
   return returnString;
 }
